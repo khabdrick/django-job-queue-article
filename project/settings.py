@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sleep_app'
+    'sleep_app',
+    "django_q"
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,20 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+Q_CLUSTER = {
+    'name': 'myproject',
+    'workers': 4, #number of workers. It Defaults to number of CPU of your local machine.
+    'recycle': 500,
+    'timeout': 60,
+    'compress': True,
+    'save_limit': 250,
+    'queue_limit': 500,
+    'cpu_affinity': 1,
+    'label': 'Django Q',
+    'redis': {
+        'host': 'ec2-54-171-19-145.eu-west-1.compute.amazonaws.com',
+        'password': 'p78f7b20091d2710e27400dda07d097aff472f7d6a5947bd3232683d268fa4c0f',
+        'port': 31449,
+        'db': 0, }
+}
